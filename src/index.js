@@ -14,11 +14,8 @@ function check(str, bracketsConfig) {
   LOOP:
   for (let i = 0; i < str.length; i++) {
     if (openSymbol.indexOf(str[i]) !== -1 && closeSymbol.indexOf(str[i]) !== -1) {
-      for (let j = i - 1; j => 0; j--) {
-        if (j === -1) {
-          break;
-        }
-        else if (symbolsCheck[j].indexSymbol === closeSymbol.indexOf(str[i]) &&
+      for (let j = i - 1; j > -1; j--) {
+        if (symbolsCheck[j].indexSymbol === closeSymbol.indexOf(str[i]) &&
           symbolsCheck[j].closed === false) {
 
           symbolsCheck[j].closed = true;
@@ -40,16 +37,17 @@ function check(str, bracketsConfig) {
         closed: false
       })
     }
+    
     else if (openSymbol.indexOf(str[i]) !== -1) {
       symbolsCheck.push({
         indexSymbol: openSymbol.indexOf(str[i]),
         closed: false
       })
     }
+
     else if (closeSymbol.indexOf(str[i]) !== -1) {
-      for (let j = i - 1; j => 0; j--) {
-        if (j === -1) break;
-        else if (symbolsCheck[j].indexSymbol === closeSymbol.indexOf(str[i]) &&
+      for (let j = i - 1; j > -1; j--) {
+        if (symbolsCheck[j].indexSymbol === closeSymbol.indexOf(str[i]) &&
           symbolsCheck[j].closed === false
         ) {
           symbolsCheck[j].closed = true;
